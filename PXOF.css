@@ -562,7 +562,7 @@ top: 0;
 left: 0;
 right: 0;
 bottom: 0;
-background-image: url('/FPojektXO/TXO.jpg'); /* כאן הוספתי את הסימן ; */
+background-image: url('TXO.jpg'); /* כאן הוספתי את הסימן ; */
 background-size: cover; /* זה יגרום לתמונה להתאים על פני המסך */
 background-attachment: fixed; /* זה יקבע את התמונה כך שהיא לא תזוז כאשר גוללים למעלה או למטה */
 background-repeat: no-repeat; /* זה ימנע חזרות של התמונה אם היא גדולה מאוד */
