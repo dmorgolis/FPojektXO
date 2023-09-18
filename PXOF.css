@@ -1,0 +1,590 @@
+/* סגנון העמוד */
+body {
+  font-family: Arial, sans-serif;
+  background: #000; /* צבע רקע שחור */
+  color: #000; /* צבע טקסט שחור */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+h1 {
+  width: 21%;
+  padding: 20px 0;
+  border: none;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  background: #000;
+  font-family: "Syncopate", sans-serif;
+  border: 2px solid #191c1c;
+  background: rgb(34, 193, 195);
+  background: radial-gradient(
+    circle,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  cursor: pointer;
+}
+
+/* עיצוב הכפתורים מעל הלוח משחק */
+div.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* הוספת מרווח בין הכפתורים */
+button.uiverse {
+  margin-right: 15px; /* זה יוסיף מרווח בין הכפתורים בינהם */
+}
+
+/* סגנון ללוח המשחק */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 2px;
+  width: 306px;
+  background-color: #000;
+  border: 4px solid #000;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+/* סגנון לתאים בלוח המשחק */
+.cell {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #fff; /* הפסים שמפרידים בין התאים בצבע לבן זרחני */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background: #000; /* רקע שחור כברירת מחדל */
+}
+
+.cell:hover {
+  background: rgb(34, 193, 195);
+  background: radial-gradient(
+    circle,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  cursor: pointer;
+}
+/* סגנון לתאים שתפוסים */
+.taken {
+  background: rgb(34, 193, 195);
+  background: radial-gradient(
+    circle,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  cursor: not-allowed; /* שניתי את הסמל ל not-allowed כי תא שנתפס לא ניתן ללחיצה */
+}
+
+
+/* #resetStats{ */
+/* width: 21%; */
+/* padding: 20px 0; */
+/* border: none; */
+/* font-weight: 700; */
+/* font-size: 1.5rem; */
+/* color: #fff; */
+/* text-transform: uppercase; */
+/* background: #000; */
+/* font-family: "Syncopate", sans-serif; */
+/* border: 2px solid #000; */
+/* } */
+
+
+.uiverse {
+--duration: 7s;
+--easing: linear;
+--c-color-1: #ff5252;
+/* Changed to red */
+--c-color-2: #00bcd4;
+/* Changed to cyan */
+--c-color-3: #9c27b0;
+/* Changed to purple */
+--c-color-4: #ffeb3b;
+/* Changed to yellow */
+--c-shadow: rgba(0, 0, 0, 0.3);
+/* Changed shadow color */
+--c-shadow-inset-top: rgba(0, 0, 0, 0.5);
+/* Changed shadow color */
+--c-shadow-inset-bottom: rgba(0, 0, 0, 0.4);
+/* Changed shadow color */
+--c-radial-inner: #ff4081;
+/* Changed to pink */
+--c-radial-outer: #2196f3;
+/* Changed to blue */
+--c-color: #fff;
+-webkit-tap-highlight-color: transparent;
+outline: none;
+position: relative;
+cursor: pointer;
+border: none;
+display: table;
+border-radius: 24px;
+padding: 0;
+margin: 0;
+text-align: center;
+font-weight: 600;
+font-size: 16px;
+letter-spacing: 0.02em;
+line-height: 1.5;
+color: var(--c-color);
+background: radial-gradient(circle, var(--c-radial-inner), var(--c-radial-outer) 80%);
+box-shadow: 0 0 14px var(--c-shadow);
+}
+
+.uiverse:before {
+content: '';
+pointer-events: none;
+position: absolute;
+z-index: 3;
+left: 0;
+top: 0;
+right: 0;
+bottom: 0;
+border-radius: 24px;
+box-shadow: inset 0 3px 12px var(--c-shadow-inset-top), inset 0 -3px 4px var(--c-shadow-inset-bottom);
+}
+
+.uiverse .wrapper {
+/* -webkit-mask-image: -webkit-radial-gradient(white, black); */
+overflow: hidden;
+border-radius: 24px;
+min-width: 132px;
+padding: 12px 0;
+}
+
+.uiverse .wrapper span {
+display: inline-block;
+position: relative;
+z-index: 1;
+}
+
+.uiverse .wrapper .circle {
+position: absolute;
+left: 0;
+top: 0;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+filter: blur(var(--blur, 8px));
+background: var(--background, transparent);
+transform: translate(var(--x, 0), var(--y, 0)) translateZ(0);
+animation: var(--animation, none) var(--duration) var(--easing) infinite;
+}
+
+.uiverse .wrapper .circle.circle-1, .uiverse .wrapper .circle.circle-9, .uiverse .wrapper .circle.circle-10 {
+--background: var(--c-color-4);
+}
+
+.uiverse .wrapper .circle.circle-3, .uiverse .wrapper .circle.circle-4 {
+--background: var(--c-color-2);
+--blur: 14px;
+}
+
+.uiverse .wrapper .circle.circle-5, .uiverse .wrapper .circle.circle-6 {
+--background: var(--c-color-3);
+--blur: 16px;
+}
+
+.uiverse .wrapper .circle.circle-2, .uiverse .wrapper .circle.circle-7, .uiverse .wrapper .circle.circle-8, .uiverse .wrapper .circle.circle-11, .uiverse .wrapper .circle.circle-12 {
+--background: var(--c-color-1);
+--blur: 12px;
+}
+
+.uiverse .wrapper .circle.circle-1 {
+--x: 0;
+--y: -40px;
+--animation: circle-1;
+}
+
+.uiverse .wrapper .circle.circle-2 {
+--x: 92px;
+--y: 8px;
+--animation: circle-2;
+}
+
+.uiverse .wrapper .circle.circle-3 {
+--x: -12px;
+--y: -12px;
+--animation: circle-3;
+}
+
+.uiverse .wrapper .circle.circle-4 {
+--x: 80px;
+--y: -12px;
+--animation: circle-4;
+}
+
+.uiverse .wrapper .circle.circle-5 {
+--x: 12px;
+--y: -4px;
+--animation: circle-5;
+}
+
+.uiverse .wrapper .circle.circle-6 {
+--x: 56px;
+--y: 16px;
+--animation: circle-6;
+}
+
+.uiverse .wrapper .circle.circle-7 {
+--x: 8px;
+--y: 28px;
+--animation: circle-7;
+}
+
+.uiverse .wrapper .circle.circle-8 {
+--x: 28px;
+--y: -4px;
+--animation: circle-8;
+}
+
+.uiverse .wrapper .circle.circle-9 {
+--x: 20px;
+--y: -12px;
+--animation: circle-9;
+}
+
+.uiverse .wrapper .circle.circle-10 {
+--x: 64px;
+--y: 16px;
+--animation: circle-10;
+}
+
+.uiverse .wrapper .circle.circle-11 {
+--x: 4px;
+--y: 4px;
+--animation: circle-11;
+}
+
+.uiverse .wrapper .circle.circle-12 {
+--blur: 14px;
+--x: 52px;
+--y: 4px;
+--animation: circle-12;
+}
+
+@keyframes circle-1 {
+33% {
+transform: translate(0px, 16px) translateZ(0);
+}
+
+66% {
+transform: translate(12px, 64px) translateZ(0);
+}
+}
+
+@keyframes circle-2 {
+33% {
+transform: translate(80px, -10px) translateZ(0);
+}
+
+66% {
+transform: translate(72px, -48px) translateZ(0);
+}
+}
+
+@keyframes circle-3 {
+33% {
+transform: translate(20px, 12px) translateZ(0);
+}
+
+66% {
+transform: translate(12px, 4px) translateZ(0);
+}
+}
+
+@keyframes circle-4 {
+33% {
+transform: translate(76px, -12px) translateZ(0);
+}
+
+66% {
+transform: translate(112px, -8px) translateZ(0);
+}
+}
+
+@keyframes circle-5 {
+33% {
+transform: translate(84px, 28px) translateZ(0);
+}
+
+66% {
+transform: translate(40px, -32px) translateZ(0);
+}
+}
+
+@keyframes circle-6 {
+33% {
+transform: translate(28px, -16px) translateZ(0);
+}
+
+66% {
+transform: translate(76px, -56px) translateZ(0);
+}
+}
+
+@keyframes circle-7 {
+33% {
+transform: translate(8px, 28px) translateZ(0);
+}
+
+66% {
+transform: translate(20px, -60px) translateZ(0);
+}
+}
+
+@keyframes circle-8 {
+33% {
+transform: translate(32px, -4px) translateZ(0);
+}
+
+66% {
+transform: translate(56px, -20px) translateZ(0);
+}
+}
+
+@keyframes circle-9 {
+33% {
+transform: translate(20px, -12px) translateZ(0);
+}
+
+66% {
+transform: translate(80px, -8px) translateZ(0);
+}
+}
+
+@keyframes circle-10 {
+33% {
+transform: translate(68px, 20px) translateZ(0);
+}
+
+66% {
+transform: translate(100px, 28px) translateZ(0);
+}
+}
+
+@keyframes circle-11 {
+33% {
+transform: translate(4px, 4px) translateZ(0);
+}
+
+66% {
+transform: translate(68px, 20px) translateZ(0);
+}
+}
+
+@keyframes circle-12 {
+33% {
+transform: translate(56px, 0px) translateZ(0);
+}
+
+66% {
+transform: translate(60px, -32px) translateZ(0);
+}
+}
+
+
+
+
+
+
+/* הזזת מרחק מימין אם יש צורך */
+
+.switch-label {
+display: inline-block;
+margin-right: 20px; /* הזזת מרחק מימין אם יש צורך */
+}
+
+.switch-label input[type="checkbox"] {
+display: none; /* הסתרת ה-checkbox המקורי */
+}
+
+.switch-label .switch {
+position: relative;
+width: 70px;
+height: 70px;
+background-color: rgb(99, 99, 99);
+border-radius: 50%;
+z-index: 1;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 2px solid rgb(126, 126, 126);
+box-shadow: 0px 0px 3px rgb(2, 2, 2) inset;
+}
+
+.switch-label .powersign {
+position: relative;
+width: 30%;
+height: 30%;
+border: 4px solid rgb(48, 48, 48);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.switch-label .powersign::before {
+content: "";
+width: 8px;
+height: 100%;
+background-color: rgb(99, 99, 99);
+position: absolute;
+top: -60%;
+z-index: 2;
+}
+
+.switch-label .powersign::after {
+content: "";
+width: 4px;
+height: 100%;
+background-color: rgb(48, 48, 48);
+position: absolute;
+top: -60%;
+z-index: 3;
+}
+
+.switch-label input[type="checkbox"]:checked + .switch .powersign {
+border: 4px solid rgb(255, 255, 255);
+box-shadow: 0px 0px 10px rgb(151, 243, 255), 0px 0px 5px rgb(151, 243, 255) inset;
+}
+
+.switch-label input[type="checkbox"]:checked + .switch .powersign::after {
+background-color: rgb(255, 255, 255);
+box-shadow: 0px 0px 5px rgb(151, 243, 255);
+}
+
+.switch-label input[type="checkbox"]:checked + .switch {
+box-shadow: 0px 0px 1px rgb(151, 243, 255) inset,
+0px 0px 2px rgb(151, 243, 255) inset,
+0px 0px 10px rgb(151, 243, 255) inset,
+0px 0px 40px rgb(151, 243, 255),
+0px 0px 100px rgb(151, 243, 255),
+0px 0px 5px rgb(151, 243, 255);
+border: 2px solid rgb(255, 255, 255);
+background-color: rgb(146, 180, 184);
+}
+
+
+
+
+#resetStats:hover,
+#newGame:hover,
+#menuButton:hover {
+  background: rgb(34, 193, 195);
+  background: radial-gradient(
+    circle,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  cursor: pointer;
+}
+
+/* הודעה על לחיצה כפולה */
+#result, #currentPlayer {
+  position: relative;
+  margin-top: 5px; /* הרווח מלמעלה שתרצה */
+  background: #000;
+  padding: 10px; /* גודל הרוחב של ההודעה */
+  color: red; /* צבע הטקסט */
+  text-align: center; /* מרכז את הטקסט באמצעות האלימנט של טקסט */
+}
+
+#stats {
+  display: flex;
+  flex-wrap: nowrap; /* השורה לא תעבור לשורה הבאה */
+  justify-content: space-between; /* מרווח בין התיבות */
+}
+
+#stats .ellipse,
+#stats p {
+  flex-basis: calc(
+    33.33% - 10px
+  ); /* רוחב גדול יותר מ-25% עם מרווח מסביב */
+  border-radius: 50%;
+  background: rgb(34, 193, 195);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+.footer p {
+  background: rgb(34, 193, 195);
+  background: radial-gradient(
+    circle,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  cursor: pointer;
+  display: inline; /* כדי שהרקע יכסה את הטקסט בלבד */
+  color: white; /* צבע הטקסט */
+  padding: 10px; /* מרווח מסביב לטקסט */
+  margin: 0; /* מרווחים מתחת ומעל לא יהיו */
+  text-decoration: none; /* להסיר קווים תחתונים מהקישור */
+}
+
+.footer p:hover {
+  background: rgb(
+    253,
+    187,
+    45
+  ); /* צבע רקע משתנה בעת העברת העכבר מעל הטקסט */
+}
+
+
+.class-name {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-image: url('/FPojektXO/TXO.jpg'); /* כאן הוספתי את הסימן ; */
+background-size: cover; /* זה יגרום לתמונה להתאים על פני המסך */
+background-attachment: fixed; /* זה יקבע את התמונה כך שהיא לא תזוז כאשר גוללים למעלה או למטה */
+background-repeat: no-repeat; /* זה ימנע חזרות של התמונה אם היא גדולה מאוד */
+color:rgba(253, 187, 45, 1);
+justify-content: center;
+align-items: center;
+flex-direction: column;
+font-size: 6rem; /* הוספתי גודל גופן גדול יותר */
+z-index: 1000;
+opacity: 0.98;
+}
+
+
+.class-name.see {
+  display: flex;
+}
+
+.userVsUser {
+  cursor: pointer;
+}
+
+.userVsComputer {
+  cursor: pointer;
+}
+

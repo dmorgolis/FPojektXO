@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="PXOF copy.css">
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+<!-- <button id="menuButton">בחר מצב משחק</button> -->
+    <div class="class-name" id="className">
+      <div id="" class="">
+        <h4>Welcom To...</h4>
+      </div>
+      <div id="userVsComputer" class="userVsComputer">
+        <span>Human Vs Bot</span>
+      </div>
+      <div id="userVsUser" class="userVsUser">
+        <span>Human Vs Human</span>
+      </div>
+    </div>
+    <!-- טבלת משחק   -->
+
+    <div id="currentPlayer">
+      <p><span id="currentPlayerSpan" class="current-player">X</span>'s Turn</p>      
+    </div>
+    <br />
+
+    <!-- טבלת משחק   -->
+
+    <div id="board" class="board"></div>
+    <!--     -->
+
+    <div id="result"></div>
+    <br />
+  <div class="button-container">
+    <!-- כפתור לאיפוס משחק   -->
+    <button id="newGame" class="uiverse">
+      <div class="wrapper">
+        <span>Reset Game</span>
+        <div class="circle circle-12"></div>
+        <div class="circle circle-11"></div>
+        <div class="circle circle-10"></div>
+        <div class="circle circle-9"></div>
+        <div class="circle circle-8"></div>
+        <div class="circle circle-7"></div>
+        <div class="circle circle-6"></div>
+        <div class="circle circle-5"></div>
+        <div class="circle circle-4"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-1"></div>
+      </div>
+    </button>
+    <!-- כפתור לבחירה מול מי למשחק   -->
+    <label class="switch-label" for="checkbox">
+      <input type="checkbox" id="checkbox">
+      <div class="switch">
+        <div class="powersign"></div>
+      </div>
+    </label>
+    <!-- כפתור לאיפוס תוצאה   -->
+      <button id="resetStats" class="uiverse">
+        <div class="wrapper">
+          <span>Reset Points</span>
+          <div class="circle circle-12"></div>
+          <div class="circle circle-11"></div>
+          <div class="circle circle-10"></div>
+          <div class="circle circle-9"></div>
+          <div class="circle circle-8"></div>
+          <div class="circle circle-7"></div>
+          <div class="circle circle-6"></div>
+          <div class="circle circle-5"></div>
+          <div class="circle circle-4"></div>
+          <div class="circle circle-3"></div>
+          <div class="circle circle-2"></div>
+          <div class="circle circle-1"></div>
+        </div>
+      </button>
+    </div>
+      <br />
+    <div class="stats" id="stats">
+      <div class="ellipse">
+        <span>X Wins:</span>
+        <span id="playerXWins">0</span>
+      </div>
+      <div class="ellipse">
+        <span>תיקו:</span>
+        <span id="draws">0</span>
+      </div>
+      <div class="ellipse">
+        <span>O Wins:</span>
+        <span id="playerOWins">0</span>
+      </div>
+    </div>
+    <br /><br /><br />
+    <div class="footer">
+      <p class="copyright">&copy; 2023 <span id="currentYear"></span></p>
+      <p class="author">
+        Created by <a class="author-link" target="_blank" href=""><b>MD</b></a>
+      </p>
+    </div>
+    <script src="PXOFull.js"></script>
+  </body>
+</html>
